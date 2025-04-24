@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Akshesh Pandey</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+      background: #f2f2f2;
+    }
+    #chatroom, #login {
+      display: none;
+    }
+    .box {
+      max-width: 400px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    #messages {
+      height: 200px;
+      overflow-y: auto;
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="box" id="login">
+    <h2>Enter Password</h2>
+    <input type="password" id="password" placeholder="Password" />
+    <button onclick="checkPassword()">Enter</button>
+    <p id="wrong" style="color:red;"></p>
+  </div>
+
+  <div class="box" id="chatroom">
+    <h2>Welcome, Dikshita</h2>
+    <div id="messages"></div>
+    <input type="text" id="msg" placeholder="Type your message..." />
+    <button onclick="sendMsg()">Send</button>
+  </div>
+
+  <script>
+    const correctPassword = "DikshitaLovesAkshesh";
+
+    function checkPassword() {
+      const input = document.getElementById("password").value;
+      if (input === correctPassword) {
+        document.getElementById("login").style.display = "none";
+        document.getElementById("chatroom").style.display = "block";
+      } else {
+        document.getElementById("wrong").innerText = "Wrong password!";
+      }
+    }
+
+    function sendMsg() {
+      const msg = document.getElementById("msg").value;
+      if (msg.trim() !== "") {
+        const node = document.createElement("div");
+        node.innerText = "You: " + msg;
+        document.getElementById("messages").appendChild(node);
+        document.getElementById("msg").value = "";
+      }
+    }
+
+    window.onload = () => {
+      document.getElementById("login").style.display = "block";
+    };
+  </script>
+</body>
+</html>
